@@ -8,6 +8,7 @@ import { Bot } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { normalizeIconName } from '@/lib/utils/icon-utils';
 import type { Agent } from '@/hooks/agents/utils';
+import { branding } from '@/lib/branding';
 
 interface AgentAvatarProps {
   // For passing agent data directly (preferred - no fetch)
@@ -33,7 +34,7 @@ export const AgentAvatar: React.FC<AgentAvatarProps> = ({
   // Agent data props
   agent: propAgent,
   agentId,
-  fallbackName = "Kortix",
+  fallbackName = branding.aiName,
 
   // Direct props
   iconName: propIconName,
@@ -90,8 +91,8 @@ export const AgentAvatar: React.FC<AgentAvatarProps> = ({
         style={{ width: size, height: size, ...borderRadiusStyle }}
       >
         <img
-          src="/kortix-symbol.svg"
-          alt="Kortix"
+          src={branding.assets.logoSymbol}
+          alt={branding.productName}
           className="flex-shrink-0 invert dark:invert-0"
           style={{ width: `${size * 0.5}px`, height: `${size * 0.5}px` }}
         />
@@ -159,7 +160,7 @@ interface AgentNameProps {
 export const AgentName: React.FC<AgentNameProps> = ({
   agent: propAgent,
   agentId,
-  fallback = "Kortix"
+  fallback = branding.aiName
 }) => {
   const cachedAgent = useAgentFromCache(!propAgent && agentId ? agentId : undefined);
   const agent = propAgent || cachedAgent;

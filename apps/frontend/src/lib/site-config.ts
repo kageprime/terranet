@@ -1,10 +1,11 @@
 import { pricingTiers, type PricingTier } from '@/lib/pricing-config';
+import { branding } from '@/lib/branding';
 
 // Re-export for backward compatibility
 export type { PricingTier } from '@/lib/pricing-config';
 
 export const siteConfig = {
-  url: process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000',
+  url: branding.url,
   nav: {
     links: [
       { id: 1, name: 'Home', href: '/' },
@@ -15,17 +16,17 @@ export const siteConfig = {
   },
   hero: {
     description:
-      'Kortix – open-source platform to build, manage and train your AI Workforce.',
+      `${branding.productName} – open-source platform to build, manage and train your AI Workforce.`,
   },
   cloudPricingItems: pricingTiers,
   footerLinks: [
     {
-      title: 'Kortix',
+      title: branding.productName,
       links: [
         { id: 1, title: 'About', url: '/about' },
         { id: 2, title: 'Careers', url: '/careers' },
         { id: 3, title: 'Support', url: '/support' },
-        { id: 4, title: 'Contact', url: 'mailto:hey@kortix.com' },
+        { id: 4, title: 'Contact', url: `mailto:${branding.contactEmail}` },
       ],
     },
     {

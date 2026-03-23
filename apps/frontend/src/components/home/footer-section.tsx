@@ -9,6 +9,7 @@ import Image from 'next/image';
 import { useTheme } from 'next-themes';
 import { useEffect, useState } from 'react';
 import { KortixLogo } from '@/components/sidebar/kortix-logo';
+import { branding } from '@/lib/branding';
 
 export function FooterSection() {
   const tablet = useMediaQuery('(max-width: 1024px)');
@@ -58,7 +59,7 @@ export function FooterSection() {
                   </svg>
                 </a>
                 <a
-                  href="https://x.com/kortix"
+                  href={branding.social.xUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="X (Twitter)"
@@ -75,7 +76,7 @@ export function FooterSection() {
                   </svg>
                 </a>
                 <a
-                  href="https://www.linkedin.com/company/kortix/"
+                  href={branding.social.linkedinUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="LinkedIn"
@@ -151,4 +152,3 @@ export function FooterSection() {
     </footer>
   );
 }
-

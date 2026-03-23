@@ -6,10 +6,11 @@ import { KortixLogo } from '@/components/sidebar/kortix-logo';
 import { LocaleSwitcher } from '@/components/home/locale-switcher';
 import { ThemeToggle } from '@/components/home/theme-toggle';
 import { useGitHubStars } from '@/hooks/utils';
+import { branding } from '@/lib/branding';
 
 export function SimpleFooter() {
   const currentYear = new Date().getFullYear();
-  const { formattedStars, loading: starsLoading } = useGitHubStars('kortix-ai', 'suna');
+  const { formattedStars, loading: starsLoading } = useGitHubStars(branding.social.githubOrg, branding.social.githubRepo);
 
   return (
     <footer className="w-full bg-background/50 backdrop-blur-sm">
@@ -30,7 +31,7 @@ export function SimpleFooter() {
             {/* Social links */}
             <div className="flex items-center gap-3 pt-2">
               <a
-                href="https://github.com/kortix-ai/suna"
+                href={`https://github.com/${branding.social.githubOrg}/${branding.social.githubRepo}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="GitHub"
@@ -69,7 +70,7 @@ export function SimpleFooter() {
                 </svg>
               </a>
               <a
-                href="https://x.com/kortix"
+                href={branding.social.xUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="X (Twitter)"
@@ -87,7 +88,7 @@ export function SimpleFooter() {
                 </svg>
               </a>
               <a
-                href="https://www.linkedin.com/company/kortix/"
+                href={branding.social.linkedinUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="LinkedIn"
@@ -144,7 +145,7 @@ export function SimpleFooter() {
         <div className="mt-12 pt-8 border-t border-border/40">
           <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
             <p className="text-sm text-muted-foreground">
-              © {currentYear} Kortix. All rights reserved.
+              © {currentYear} {branding.productName}. All rights reserved.
             </p>
             <div className="flex items-center gap-1 text-sm text-muted-foreground">
               <span>Built with</span>
@@ -164,4 +165,3 @@ export function SimpleFooter() {
     </footer>
   );
 }
-
