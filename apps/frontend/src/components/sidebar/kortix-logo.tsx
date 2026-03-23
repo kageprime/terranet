@@ -1,6 +1,7 @@
 'use client';
 
 import { cn } from '@/lib/utils';
+import { branding } from '@/lib/branding';
 
 interface KortixLogoProps {
   size?: number;
@@ -14,8 +15,8 @@ export function KortixLogo({ size = 24, variant = 'symbol', className }: KortixL
   if (variant === 'logomark') {
     return (
       <img
-        src="/logomark-white.svg"
-        alt="Kortix"
+        src={branding.assets.logoMarkWhite}
+        alt={branding.productName}
         className={cn('invert dark:invert-0 flex-shrink-0', className)}
         style={{ height: `${size}px`, width: 'auto' }}
         suppressHydrationWarning
@@ -26,8 +27,8 @@ export function KortixLogo({ size = 24, variant = 'symbol', className }: KortixL
   // Default symbol variant behavior - invert for dark mode
   return (
     <img
-      src="/kortix-symbol.svg"
-      alt="Kortix"
+      src={branding.assets.logoSymbol}
+      alt={branding.productName}
       className={cn('dark:invert flex-shrink-0', className)}
       style={{ width: `${size}px`, height: `${size}px` }}
       suppressHydrationWarning

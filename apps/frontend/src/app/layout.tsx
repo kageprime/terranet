@@ -12,6 +12,7 @@ import { roobertMono } from './fonts/roobert-mono';
 import { Suspense, lazy } from 'react';
 import { I18nProvider } from '@/components/i18n-provider';
 import { featureFlags } from '@/lib/feature-flags';
+import { branding } from '@/lib/branding';
 
 // Lazy load non-critical analytics and global components
 const Analytics = lazy(() => import('@vercel/analytics/react').then(mod => ({ default: mod.Analytics })));
@@ -45,9 +46,9 @@ export const metadata: Metadata = {
   },
   description: siteMetadata.description,
   keywords: siteMetadata.keywords,
-  authors: [{ name: 'Kortix Team', url: 'https://www.kortix.com' }],
-  creator: 'Kortix Team',
-  publisher: 'Kortix Team',
+  authors: [{ name: branding.companyName, url: branding.url }],
+  creator: branding.companyName,
+  publisher: branding.companyName,
   applicationName: siteMetadata.name,
   robots: {
     index: true,
@@ -80,8 +81,8 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: siteMetadata.title,
     description: siteMetadata.description,
-    creator: '@kortix',
-    site: '@kortix',
+    creator: branding.social.xHandle,
+    site: branding.social.xHandle,
     images: ['/banner.png'],
   },
   icons: {
@@ -166,25 +167,25 @@ export default function RootLayout({
         />
         
         {/* Static SEO meta tags - rendered in initial HTML */}
-        <title>Kortix: Your Autonomous AI Worker</title>
-        <meta name="description" content="Built for complex tasks, designed for everything. The ultimate AI assistant that handles it all—from simple requests to mega-complex projects." />
-        <meta name="keywords" content="Kortix, AI Worker, Agentic AI, Autonomous AI Worker, AI Automation, AI Workflow Automation, AI Assistant, Task Automation" />
-        <meta property="og:title" content="Kortix: Your Autonomous AI Worker" />
-        <meta property="og:description" content="Built for complex tasks, designed for everything. The ultimate AI assistant that handles it all—from simple requests to mega-complex projects." />
-        <meta property="og:image" content="https://kortix.com/banner.png" />
-        <meta property="og:url" content="https://kortix.com" />
+        <title>{branding.fullTitle}</title>
+        <meta name="description" content={branding.description} />
+        <meta name="keywords" content={branding.keywords} />
+        <meta property="og:title" content={branding.fullTitle} />
+        <meta property="og:description" content={branding.description} />
+        <meta property="og:image" content={`${branding.url}/banner.png`} />
+        <meta property="og:url" content={branding.url} />
         <meta property="og:type" content="website" />
-        <meta property="og:site_name" content="Kortix" />
+        <meta property="og:site_name" content={branding.productName} />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Kortix: Your Autonomous AI Worker" />
-        <meta name="twitter:description" content="Built for complex tasks, designed for everything. The ultimate AI assistant that handles it all—from simple requests to mega-complex projects." />
-        <meta name="twitter:image" content="https://kortix.com/banner.png" />
-        <meta name="twitter:site" content="@kortix" />
-        <link rel="canonical" href="https://kortix.com" />
+        <meta name="twitter:title" content={branding.fullTitle} />
+        <meta name="twitter:description" content={branding.description} />
+        <meta name="twitter:image" content={`${branding.url}/banner.png`} />
+        <meta name="twitter:site" content={branding.social.xHandle} />
+        <link rel="canonical" href={branding.canonicalUrl} />
         
         {/* iOS Smart App Banner - shows native install banner in Safari */}
         {!featureFlags.disableMobileAdvertising ? (
-          <meta name="apple-itunes-app" content="app-id=6754448524, app-argument=kortix://" />
+          <meta name="apple-itunes-app" content={`app-id=6754448524, app-argument=${branding.iosAppArgument}`} />
         ) : null}
 
 
@@ -196,15 +197,19 @@ export default function RootLayout({
               '@context': 'https://schema.org',
               '@type': 'Organization',
               name: siteMetadata.name,
-              alternateName: ['Kortix', 'Kortix AI', 'Kortix: Your Autonomous AI Worker'],
+              alternateName: [branding.productName, `${branding.productName} AI`, branding.fullTitle],
               url: siteMetadata.url,
               logo: `${siteMetadata.url}/favicon.png`,
               description: siteMetadata.description,
+              parentOrganization: {
+                '@type': 'Organization',
+                name: branding.companyName,
+              },
               foundingDate: '2024',
               sameAs: [
-                'https://github.com/Kortix-ai/Suna',
-                'https://x.com/kortix',
-                'https://linkedin.com/company/kortix',
+                `https://github.com/${branding.social.githubOrg}/${branding.social.githubRepo}`,
+                branding.social.xUrl,
+                branding.social.linkedinUrl,
               ],
               contactPoint: {
                 '@type': 'ContactPoint',
@@ -222,7 +227,7 @@ export default function RootLayout({
               '@context': 'https://schema.org',
               '@type': 'SoftwareApplication',
               name: siteMetadata.title,
-              alternateName: [siteMetadata.name, 'Kortix'],
+              alternateName: [siteMetadata.name, branding.productName],
               applicationCategory: 'BusinessApplication',
               operatingSystem: 'Web, macOS, Windows, Linux',
               description: siteMetadata.description,
