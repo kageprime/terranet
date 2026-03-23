@@ -14,10 +14,10 @@ export function KortixLogo({ size = 24, variant = 'symbol', className }: KortixL
   // and invert it for light mode using CSS (no JS needed)
   if (variant === 'logomark') {
     return (
-        <img
-          src={branding.assets.logoMarkWhite}
-          alt={branding.productName}
-          className={cn('invert dark:invert-0 flex-shrink-0', className)}
+      <img
+        src={branding.assets.logoMarkWhite}
+        alt={branding.productName}
+        className={cn('invert dark:invert-0 flex-shrink-0', className)}
         style={{ height: `${size}px`, width: 'auto' }}
         suppressHydrationWarning
       />

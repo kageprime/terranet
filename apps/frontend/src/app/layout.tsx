@@ -46,9 +46,9 @@ export const metadata: Metadata = {
   },
   description: siteMetadata.description,
   keywords: siteMetadata.keywords,
-  authors: [{ name: branding.teamName, url: branding.url }],
-  creator: branding.teamName,
-  publisher: branding.teamName,
+  authors: [{ name: branding.companyName, url: branding.url }],
+  creator: branding.companyName,
+  publisher: branding.companyName,
   applicationName: siteMetadata.name,
   robots: {
     index: true,
@@ -201,6 +201,10 @@ export default function RootLayout({
               url: siteMetadata.url,
               logo: `${siteMetadata.url}/favicon.png`,
               description: siteMetadata.description,
+              parentOrganization: {
+                '@type': 'Organization',
+                name: branding.companyName,
+              },
               foundingDate: '2024',
               sameAs: [
                 `https://github.com/${branding.social.githubOrg}/${branding.social.githubRepo}`,

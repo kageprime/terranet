@@ -16,7 +16,7 @@ export const siteConfig = {
   },
   hero: {
     description:
-      `${branding.productName} – open-source platform to build, manage and train your AI Workforce.`,
+      `${branding.productName} – open-source platform to build, manage and train your AI Workforce. ${branding.productAttribution}`,
   },
   cloudPricingItems: pricingTiers,
   footerLinks: [

@@ -3,7 +3,9 @@ const appUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://dosco.live';
 export const branding = {
   productName: 'Dosco.live',
   aiName: 'Dosco.live',
+  companyName: 'AltMatter Systems',
   teamName: 'Dosco.live Team',
+  productAttribution: 'Dosco.live is a product of AltMatter Systems.',
   fullTitle: 'Dosco.live: Your Autonomous AI Worker',
   description:
     'Built for complex tasks, designed for everything. The ultimate AI assistant that handles it all—from simple requests to mega-complex projects.',
