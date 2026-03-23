@@ -159,7 +159,7 @@ async def get_slide_html(template_name: str, slide_number: int):
             content=html_content,
             headers={
                 "X-Frame-Options": "SAMEORIGIN",
-                "Content-Security-Policy": "frame-ancestors 'self' http://localhost:* https://*.kortix.com https://*.suna.so",
+                "Content-Security-Policy": "frame-ancestors 'self' http://localhost:* https://*.dosco.live https://*.suna.so",
             }
         )
     except HTTPException:
@@ -193,4 +193,3 @@ async def get_template_asset(template_name: str, filename: str):
     except Exception as e:
         logger.error(f"Error serving template asset: {e}")
         raise HTTPException(status_code=500, detail="Internal server error")
-

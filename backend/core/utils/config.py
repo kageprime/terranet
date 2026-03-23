@@ -307,8 +307,8 @@ class Configuration:
     OPENROUTER_API_BASE: Optional[str] = "https://openrouter.ai/api/v1"
     OPENAI_COMPATIBLE_API_KEY: Optional[str] = None
     OPENAI_COMPATIBLE_API_BASE: Optional[str] = None
-    OR_SITE_URL: Optional[str] = "https://www.kortix.com"
-    OR_APP_NAME: Optional[str] = "Kortix.com"
+    OR_SITE_URL: Optional[str] = "https://dosco.live"
+    OR_APP_NAME: Optional[str] = "Dosco.live"
     
     # Frontend URL configuration
     FRONTEND_URL_ENV: Optional[str] = None
@@ -400,7 +400,8 @@ class Configuration:
     LANGFUSE_SECRET_KEY: Optional[str] = None
     LANGFUSE_HOST: Optional[str] = "https://cloud.langfuse.com"
 
-    # Admin API key for server-side operations
+    # Admin API keys for server-side operations
+    DOSCO_ADMIN_API_KEY: Optional[str] = None
     KORTIX_ADMIN_API_KEY: Optional[str] = None
 
     # API Keys system configuration
@@ -510,8 +511,8 @@ class Configuration:
         Get the frontend URL based on environment.
         
         Returns:
-        - Production: 'https://kortix.com' (or FRONTEND_URL_ENV if set)
-        - Staging: 'https://staging.kortix.com' (or FRONTEND_URL_ENV if set)
+        - Production: 'https://dosco.live' (or FRONTEND_URL_ENV if set)
+        - Staging: 'https://staging.dosco.live' (or FRONTEND_URL_ENV if set)
         - Local: FRONTEND_URL_ENV or 'http://localhost:3000'
         """
         # Check for environment variable override first
@@ -520,17 +521,22 @@ class Configuration:
         
         # Environment-based defaults
         if self.ENV_MODE == EnvMode.PRODUCTION:
-            return 'https://kortix.com'
+            return 'https://dosco.live'
         elif self.ENV_MODE == EnvMode.STAGING:
             return 'http://localhost:3000'
         else:
             return 'http://localhost:3000'
     
     def _generate_admin_api_key(self) -> str:
-        """Generate a secure admin API key for Kortix administrative functions."""
+        """Generate a secure admin API key for Dosco.live administrative functions."""
         # Generate 32 random bytes and encode as hex for a readable API key
         key_bytes = secrets.token_bytes(32)
         return key_bytes.hex()
+
+    @property
+    def ADMIN_API_KEY(self) -> Optional[str]:
+        """Canonical admin API key with backward compatibility."""
+        return self.DOSCO_ADMIN_API_KEY or self.KORTIX_ADMIN_API_KEY
 
     def __init__(self):
         """Initialize configuration by loading from environment variables."""
@@ -551,9 +557,9 @@ class Configuration:
         self._load_from_env()
         
         # Auto-generate admin API key if not present
-        if not self.KORTIX_ADMIN_API_KEY:
-            self.KORTIX_ADMIN_API_KEY = self._generate_admin_api_key()
-            logger.info("Auto-generated KORTIX_ADMIN_API_KEY for administrative functions")
+        if not self.DOSCO_ADMIN_API_KEY and not self.KORTIX_ADMIN_API_KEY:
+            self.DOSCO_ADMIN_API_KEY = self._generate_admin_api_key()
+            logger.info("Auto-generated DOSCO_ADMIN_API_KEY for administrative functions")
         
         # Perform validation
         self._validate()
