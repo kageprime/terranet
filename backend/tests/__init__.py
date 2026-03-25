@@ -1,5 +1,5 @@
 """
-E2E API Test Suite for Kortix Backend
+E2E API Test Suite for Dosco.live Backend
 
 Functional tests covering the full API surface:
 - Authentication & accounts
@@ -8,4 +8,3 @@ Functional tests covering the full API surface:
 - Agent runs & streaming
 - Complete user journeys
 """
-

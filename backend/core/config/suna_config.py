@@ -1,8 +1,8 @@
 from core.prompts.core_prompt import CORE_SYSTEM_PROMPT
 
 SUNA_CONFIG = {
-    "name": "Kortix",
-    "description": "Kortix is your AI assistant with access to various tools and integrations to help you with tasks across domains.",
+    "name": "Dosco.live",
+    "description": "Dosco.live is your AI assistant with access to various tools and integrations to help you with tasks across domains.",
     "model": "kortix/basic",
     "system_prompt": CORE_SYSTEM_PROMPT,
     "configured_mcps": [],
@@ -43,4 +43,3 @@ SUNA_CONFIG = {
     },
     "is_default": True
 }
-
